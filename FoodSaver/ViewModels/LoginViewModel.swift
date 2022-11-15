@@ -32,11 +32,11 @@ class LoginViewModel {
     
     func validate(completion: @escaping(Error?) -> ()) {
         guard username.value.isEmpty == false else {
-            return completion(NSError(domain: "Error", code: -1, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Username should not be empty.", comment: "Username should not be empty.")]))
+            return completion(NSError(domain: "Error", code: -1, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Username should not be empty. Please enter.", comment: "Username should not be empty. Please enter.")]))
         }
         
         guard password.value.isEmpty == false else {
-            return completion(NSError(domain: "Error", code: -1, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Password should not be empty.", comment: "Password should not be empty.")]))
+            return completion(NSError(domain: "Error", code: -1, userInfo: [NSLocalizedDescriptionKey : NSLocalizedString("Password should not be empty. Please enter.", comment: "Password should not be empty. Please enter.")]))
         }
         completion(nil)
     }

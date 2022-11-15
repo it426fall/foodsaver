@@ -14,7 +14,7 @@ class SignUpViewModel {
     var username = Observable("")
     var password = Observable("")
     var confirmPassword = Observable("")
-    var accountType = Observable(AccountType.Donar)
+    var accountType = Observable(AccountType.Donor)
     var firstname = Observable("")
     var lastname = Observable("")
     var gender = Observable(Gender.Male)
@@ -29,37 +29,37 @@ class SignUpViewModel {
     
     func isValide(completion: @escaping((Bool) -> ())) {
         guard username.value.isEmpty == false else {
-            validationError = NSLocalizedString("Username should not be empty.", comment: "Username should not be empty.")
+            validationError = NSLocalizedString("Username should not be empty. Please enter.", comment: "Username should not be empty.  Please enter.")
             return completion(false)
         }
         
         guard password.value.isEmpty == false else {
-            validationError = NSLocalizedString("Password should not be empty.", comment: "Password should not be empty.")
+            validationError = NSLocalizedString("Password should not be empty.", comment: "Password should not be empty.  Please enter.")
             return completion(false)
         }
         
         guard password.value == confirmPassword.value else {
-            validationError = NSLocalizedString("Password and Confirm Password should be equal.", comment: "Password and Confirm Password should be equal.")
+            validationError = NSLocalizedString("Password and confirm Password do not match.  Please try again.", comment: "Password and confirm Password do not match.  Please try again.")
             return completion(false)
         }
         
         guard firstname.value.isEmpty == false else {
-            validationError = NSLocalizedString("Firstname should not be empty.", comment: "Firstname should not be empty.")
+            validationError = NSLocalizedString("Firstname should not be empty. Please enter.", comment: "Firstname should not be empty. Please enter.")
             return completion(false)
         }
         
         guard address.value.isEmpty == false else {
-            validationError = NSLocalizedString("Address should not be empty.", comment: "Address should not be empty.")
+            validationError = NSLocalizedString("Address should not be empty. Please enter.", comment: "Address should not be empty. Please enter.")
             return completion(false)
         }
         
         guard email.value.isEmpty == true, Utilities.isValidEmail(email.value) == false else {
-            validationError = NSLocalizedString("Please enter proper email ID.", comment: "Please enter proper email ID.")
+            validationError = NSLocalizedString("Please enter a valid email ID.", comment: "Please enter a valid email ID.")
             return completion(false)
         }
         
         if DBManager.manager.accountForUsername(username: username.value) != nil {
-            validationError = NSLocalizedString("Username already existed. Please try other username.", comment: "Username already existed. Please try other username.")
+            validationError = NSLocalizedString("Username already exists. Please try other username.", comment: "Username already exists. Please try other username.")
             return completion(false)
         }
         

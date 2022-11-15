@@ -19,8 +19,8 @@ class RequestsViewModel {
             return false
         }
         
-        let avialbelFood = f.quantity - f.donatedQuantity
-        if r.quantity <= avialbelFood {
+        let availableFood = f.quantity - f.donatedQuantity
+        if r.quantity <= availableFood {
             f.donatedQuantity += r.quantity
             r.status = Int16(RequestStatus.Approved.rawValue)
             DBManager.manager.saveContext()
@@ -59,7 +59,7 @@ class RequestsViewModel {
             return
         }
         
-        if account.account_type == AccountType.Donar.rawValue {
+        if account.account_type == AccountType.Donor.rawValue {
             requests = DBManager.manager.getAllRequestsForTo(account: account)
         } else if account.account_type == AccountType.Receiver.rawValue {
             requests = DBManager.manager.getAllRequestsBy(account: account)

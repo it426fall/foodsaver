@@ -25,7 +25,7 @@ extension Food {
     @NSManaged public var postDate: Date?
     @NSManaged public var quantity: Int16
     @NSManaged public var title: String?
-    @NSManaged public var donar: User?
+    @NSManaged public var donor: User?
     @NSManaged public var receiver: User?
     @NSManaged public var reviews: NSSet?
     @NSManaged public var requests: NSSet?

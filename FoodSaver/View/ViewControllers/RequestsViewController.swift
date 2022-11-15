@@ -42,7 +42,7 @@ extension RequestsViewController: UITableViewDelegate, UITableViewDataSource {
         }
         let request = viewModel.requests[indexPath.row]
         let status = RequestStatus(rawValue: Int(request.status)) ?? RequestStatus.Requested
-        cell.updateRequestStatus(status: status, isDoner: AppManager.manager.loginAccount?.account_type == Int16(AccountType.Donar.rawValue))
+        cell.updateRequestStatus(status: status, isDoner: AppManager.manager.loginAccount?.account_type == Int16(AccountType.Donor.rawValue))
         viewModel.updateRequestStatus(request: request)
         cell.request = request
         cell.delegate = self

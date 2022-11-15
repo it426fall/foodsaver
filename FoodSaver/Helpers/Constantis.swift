@@ -38,13 +38,13 @@ enum Gender: Int, CaseIterable {
 }
 
 enum AccountType: Int, CaseIterable {
-    case Donar = 0
+    case Donor = 0
     case Receiver
     
     func displayString() -> String {
         switch self {
-        case .Donar:
-            return NSLocalizedString("Donar", comment: "Donar")
+        case .Donor:
+            return NSLocalizedString("Donor", comment: "Donor")
         case .Receiver:
             return NSLocalizedString("Receiver", comment: "Receiver")
         }
@@ -52,8 +52,8 @@ enum AccountType: Int, CaseIterable {
     
     static func valueFrom(string: String) -> AccountType {
         switch string {
-        case NSLocalizedString("Donar", comment: "Donar"):
-            return .Donar
+        case NSLocalizedString("Donor", comment: "Donor"):
+            return .Donor
         case NSLocalizedString("Receiver", comment: "Receiver"):
             return .Receiver
         default:
@@ -98,7 +98,7 @@ enum FoodType: Int, CaseIterable {
     }
 }
 
-enum FoodFileter: Int {
+enum FoodFilter: Int {
     case all = 0
     case veg
     case nonveg

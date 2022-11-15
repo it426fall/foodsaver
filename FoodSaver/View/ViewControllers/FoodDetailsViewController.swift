@@ -77,7 +77,7 @@ class FoodDetailsViewController: UIViewController {
     }
     
     @IBAction func onTapDelete(_ sender: Any) {
-        showConfirmationAlert(title: NSLocalizedString("Delete", comment: "Delete"), message: NSLocalizedString("Do you want to delete this food?", comment: "Do you want to delete this food?"), accpetBlock: {
+        showConfirmationAlert(title: NSLocalizedString("Delete", comment: "Delete"), message: NSLocalizedString("Do you want to delete this food post?", comment: "Do you want to delete this food post?"), accpetBlock: {
             if self.viewModel?.deleteFood() ?? false {
                 self.navigationController?.popViewController(animated: true)
             } else {
@@ -89,14 +89,14 @@ class FoodDetailsViewController: UIViewController {
     }
     
     @IBAction func onTapCall(_ sender: Any) {
-        if let url = URL(string: "tel://\(viewModel?.donarPhoneNumber() ?? "")"), UIApplication.shared.canOpenURL(url) {
+        if let url = URL(string: "tel://\(viewModel?.donorPhoneNumber() ?? "")"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
     @IBAction func onTapDirection(_ sender: Any) {
         let regionDistance:CLLocationDistance = 10000
-        let coordinates = viewModel?.donarLocation() ?? CLLocationCoordinate2DMake(0.0, 0.0)
+        let coordinates = viewModel?.donorLocation() ?? CLLocationCoordinate2DMake(0.0, 0.0)
         let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
@@ -104,7 +104,7 @@ class FoodDetailsViewController: UIViewController {
         ]
         let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = viewModel?.donarName() ?? ""
+        mapItem.name = viewModel?.donorName() ?? ""
         mapItem.openInMaps(launchOptions: options)
     }
     
@@ -122,11 +122,11 @@ class FoodDetailsViewController: UIViewController {
     
     @IBAction func onTapRequest(_ sender: Any) {
         if viewModel?.requestFood() ?? false {
-            showInfoAlert(title: NSLocalizedString("Success", comment: "Success"), message: NSLocalizedString("Requested sucecssfully. Please wait for the confirmation.", comment: "Requested sucecssfully. Please wait for the confirmation.")) {
+            showInfoAlert(title: NSLocalizedString("Success", comment: "Success"), message: NSLocalizedString("Request sent sucecssfully. Please wait for the confirmation.", comment: "Request sent sucecssfully. Please wait for the confirmation.")) {
                 self.navigationController?.popViewController(animated: true)
             }
         } else {
-            showInfoAlert(title: NSLocalizedString("Failed", comment: "Failed"), message: NSLocalizedString("Something went wrong. Raise request with right quantity and train again.", comment: "Something went wrong. Raise request with right quantity and train again.")) {
+            showInfoAlert(title: NSLocalizedString("Failed", comment: "Failed"), message: NSLocalizedString("Something went wrong. Please try again.", comment: "Something went wrong. Please and try again.")) {
             }
         }
     }
@@ -147,7 +147,7 @@ fileprivate extension FoodDetailsViewController {
         availableFoodLabel.text = "\(viewModel?.avialbleQuantity() ?? 0) / \(food?.quantity ?? 0)"
         foodTypeImageView.tintColor = (food?.isVeg ?? true) ? UIColor(named: "veg") : UIColor(named: "nonveg")
         favoriteButton.isSelected = viewModel?.isFoodFavorite() ?? false
-        donatedByLabel.text = "By \(viewModel?.donarName() ?? ""), \(viewModel?.donarAddress() ?? "")"
+        donatedByLabel.text = "By \(viewModel?.donorName() ?? ""), \(viewModel?.donorAddress() ?? "")"
         expiredLabel.isHidden = !(food?.isExpaired() ?? false)
     }
     

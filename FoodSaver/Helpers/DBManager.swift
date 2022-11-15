@@ -90,15 +90,15 @@ class DBManager {
     
     func getAllFoodItems(account: Account) -> [Food] {
         let fetchRequest: NSFetchRequest<Food> = Food.fetchRequest()
-        if account.account_type == AccountType.Donar.rawValue {
-            fetchRequest.predicate = NSPredicate(format: "donar.account.username == %@", account.username ?? "")
+        if account.account_type == AccountType.Donor.rawValue {
+            fetchRequest.predicate = NSPredicate(format: "donor.account.username == %@", account.username ?? "")
         }
         return (try? persistentContainer.viewContext.fetch(fetchRequest)) ?? []
     }
     
     func getAllRequestsForTo(account: Account) -> [Request] {
         let fetchRequest: NSFetchRequest<Request> = Request.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "food.donar.account.username == %@", account.username ?? "")
+        fetchRequest.predicate = NSPredicate(format: "food.donor.account.username == %@", account.username ?? "")
         return (try? persistentContainer.viewContext.fetch(fetchRequest)) ?? []
     }
     

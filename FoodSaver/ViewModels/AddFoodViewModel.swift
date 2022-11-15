@@ -24,7 +24,7 @@ class AddFoodViewModel {
         }
         
         guard quantity.value > 0 else {
-            validationError = NSLocalizedString("Qyantity should not be empty.", comment: "Title should not be empty.")
+            validationError = NSLocalizedString("Quantity should not be empty.", comment: "Quantity should not be empty.")
             return false
         }
         
@@ -34,7 +34,7 @@ class AddFoodViewModel {
         }
         
         guard photo.value != nil else {
-            validationError = NSLocalizedString("Please attach a photo of food.", comment: "Please attach a photo of food.")
+            validationError = NSLocalizedString("Please attach a photo of the food.", comment: "Please attach a photo of the food.")
             return false
         }
         
