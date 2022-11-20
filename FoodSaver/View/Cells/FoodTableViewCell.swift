@@ -14,7 +14,7 @@ protocol FoodTableViewCellDelegate {
 }
 
 protocol FoodTableViewCellDataSource {
-    func isFoodFavorate(food: Food) -> Bool
+    func isFoodFavorite(food: Food) -> Bool
 }
 
 class FoodTableViewCell: UITableViewCell {
@@ -32,7 +32,7 @@ class FoodTableViewCell: UITableViewCell {
                 photoImageView.image = nil
             }
             if let f = food {
-                favoriteButton.isSelected = dataSource?.isFoodFavorate(food: f) ?? false
+                favoriteButton.isSelected = dataSource?.isFoodFavorite(food: f) ?? false
             } else {
                 favoriteButton.isSelected = false
             }

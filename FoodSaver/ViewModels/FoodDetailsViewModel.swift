@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreLocation
 import FloatRatingView
 
 
@@ -50,21 +49,6 @@ class FoodDetailsViewModel {
         return Int(food.quantity - food.donatedQuantity)
     }
     
-    func donorName() -> String {
-        return (food.donor?.firstname ?? "") + " " + (food.donor?.lastname ?? "")
-    }
-    
-    func donorPhoneNumber() -> String {
-        return food.donor?.phone ?? ""
-    }
-    
-    func donorLocation() -> CLLocationCoordinate2D {
-        return CLLocationCoordinate2DMake(food.donor?.latitude ?? 0.0, food.donor?.longitude ?? 0.0)
-    }
-    
-    func donorAddress() -> String {
-        return food.donor?.address ?? ""
-    }
     
     func requestFood() -> Bool {
         guard requestQuantity.value > 0,
@@ -78,19 +62,8 @@ class FoodDetailsViewModel {
         request.quantity = Int16(requestQuantity.value)
         request.requester = user
         request.status = Int16(RequestStatus.Requested.rawValue)
-        DBManager.manager.saveContext()
         return true
     }
     
-    func deleteFood() -> Bool {
-        guard let loginUser = AppManager.manager.loginAccount?.username,
-        food.donor?.account?.username == loginUser else {
-            return false
-        }
-        
-        AppManager.manager.loginAccount?.user?.removeFromDonatedFoods(food)
-        DBManager.manager.deleteEntity(entity: food)
-        DBManager.manager.saveContext()
-        return true
-    }
+   
 }

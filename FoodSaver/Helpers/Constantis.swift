@@ -84,22 +84,3 @@ enum RequestStatus: Int {
     }
 }
 
-enum FoodType: Int, CaseIterable {
-    case veg = 0
-    case nonVeg
-    
-    func displayString() -> String {
-        switch self {
-        case .veg:
-            return NSLocalizedString("Veg", comment: "Veg")
-        case .nonVeg:
-            return NSLocalizedString("Non-Veg", comment: "Non-Veg")
-        }
-    }
-}
-
-enum FoodFilter: Int {
-    case all = 0
-    case veg
-    case nonveg
-}

@@ -67,9 +67,6 @@ class DBManager {
         }
     }
     
-    func deleteEntity(entity: NSManagedObject) {
-        persistentContainer.viewContext.delete(entity)
-    }
     
     func rollback()  {
         let context = persistentContainer.viewContext

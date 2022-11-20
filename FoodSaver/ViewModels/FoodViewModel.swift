@@ -11,8 +11,6 @@ class FoodViewModel {
     
     fileprivate(set) var food: Observable<[Food]> = Observable([])
     fileprivate(set) var sourceFood: [Food] = []
-    fileprivate(set) var filter: FoodFilter = .all
-    
     func loadAllAvialabelFood() {
         guard let account = AppManager.manager.loginAccount else {
             self.food.value = []
@@ -25,18 +23,10 @@ class FoodViewModel {
             }
             return false
         })
-        applyFilter(filter: filter)
+      
     }
     
-    func applyFilter(filter: FoodFilter) {
-        if filter == .all {
-            self.food.value = sourceFood
-        } else {
-            self.food.value = sourceFood.filter({ (f) -> Bool in
-                return f.isVeg == (filter == .veg)
-            })
-        }
-    }
+    
     
     func addToFavorites(add: Bool, food: Food) {
         if add {

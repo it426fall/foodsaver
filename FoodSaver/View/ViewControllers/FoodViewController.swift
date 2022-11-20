@@ -26,8 +26,6 @@ class FoodViewController: UIViewController {
         navigationItem.title = NSLocalizedString("Food", comment: "Food")
         navigationController?.navigationBar.sizeToFit()
         
-        tableView.register(UINib(nibName: "FoodTableViewCell", bundle: .main), forCellReuseIdentifier: "FoodTableViewCell")
-        
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor(named: "Screen Title") as Any]
 
     }
@@ -44,9 +42,6 @@ class FoodViewController: UIViewController {
         navigationItem.largeTitleDisplayMode = .never
     }
     
-    @IBAction func onTapfilter(_ sender: UIBarButtonItem) {
-        showFilter()
-    }
 }
 
 extension FoodViewController: UITableViewDelegate, UITableViewDataSource {
@@ -96,36 +91,8 @@ extension FoodViewController: FoodTableViewCellDelegate, FoodTableViewCellDataSo
         }
     }
     
-    func isFoodFavorate(food: Food) -> Bool {
+    func isFoodFavorite(food: Food) -> Bool {
         return viewModel.isFoodFavorite(food: food)
     }
 }
 
-fileprivate extension FoodViewController {
-    func showFilter() {
-        let alert = UIAlertController(title: NSLocalizedString("Filter", comment: "Filter"), message: nil, preferredStyle: .actionSheet)
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("All", comment: "All"), style: .default , handler:{ (UIAlertAction)in
-            self.viewModel.applyFilter(filter: .all)
-            self.tableView.reloadData()
-        }))
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Veg", comment: "Veg"), style: .default , handler:{ (UIAlertAction)in
-            self.viewModel.applyFilter(filter: .veg)
-            self.tableView.reloadData()
-        }))
-
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Non-Veg", comment: "Non-Veg"), style: .default , handler:{ (UIAlertAction)in
-            self.viewModel.applyFilter(filter: .nonveg)
-            self.tableView.reloadData()
-        }))
-        
-        alert.addAction(UIAlertAction(title: NSLocalizedString("Cancel", comment: "Cancel"), style: .cancel, handler:{ (UIAlertAction)in
-            
-        }))
-
-        self.present(alert, animated: true, completion: {
-            print("completion block")
-        })
-    }
-}

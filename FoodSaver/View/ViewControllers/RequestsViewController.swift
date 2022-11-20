@@ -18,7 +18,6 @@ class RequestsViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .automatic
 //        title = NSLocalizedString("Requests", comment: "Requests")
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor(named: "Screen Title") as Any]
     }
