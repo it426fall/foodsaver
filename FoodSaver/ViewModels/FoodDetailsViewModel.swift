@@ -50,19 +50,19 @@ class FoodDetailsViewModel {
         return Int(food.quantity - food.donatedQuantity)
     }
      func donorName() -> String {
-        return (food.donar?.firstname ?? "") + " " + (food.donar?.lastname ?? "")
+        return (food.donor?.firstname ?? "") + " " + (food.donor?.lastname ?? "")
     }
     
     func donorPhoneNumber() -> String {
-        return food.donar?.phone ?? ""
+        return food.donor?.phone ?? ""
     }
     
     func donorLocation() -> CLLocationCoordinate2D {
-        return CLLocationCoordinate2DMake(food.donar?.latitude ?? 0.0, food.donar?.longitude ?? 0.0)
+        return CLLocationCoordinate2DMake(food.donor?.latitude ?? 0.0, food.donor?.longitude ?? 0.0)
     }
     
     func donorAddress() -> String {
-        return food.donar?.address ?? ""
+        return food.donor?.address ?? ""
     }
     
     func requestFood() -> Bool {
@@ -83,7 +83,7 @@ class FoodDetailsViewModel {
     
     func deleteFood() -> Bool {
         guard let loginUser = AppManager.manager.loginAccount?.username,
-        food.donar?.account?.username == loginUser else {
+        food.donor?.account?.username == loginUser else {
             return false
         }
         

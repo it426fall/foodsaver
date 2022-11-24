@@ -46,8 +46,8 @@ class RequestsViewModel {
             return
         }
         
-        let avialbelFood = f.quantity - f.donatedQuantity
-        if request.quantity > avialbelFood || f.isExpaired() {
+        let availableFood = f.quantity - f.donatedQuantity
+        if request.quantity > availableFood || f.isExpaired() {
             request.status = Int16(RequestStatus.Declined.rawValue)
             DBManager.manager.saveContext()
         }
