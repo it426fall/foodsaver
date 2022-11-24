@@ -46,22 +46,22 @@ class FoodDetailsViewModel {
         reviews.value = (food.reviews?.allObjects as? [Review]) ?? []
     }
     
-    func avialbleQuantity() -> Int {
+    func availableQuantity() -> Int {
         return Int(food.quantity - food.donatedQuantity)
     }
-     func donarName() -> String {
+     func donorName() -> String {
         return (food.donar?.firstname ?? "") + " " + (food.donar?.lastname ?? "")
     }
     
-    func donarPhoneNumber() -> String {
+    func donorPhoneNumber() -> String {
         return food.donar?.phone ?? ""
     }
     
-    func donarLocation() -> CLLocationCoordinate2D {
+    func donorLocation() -> CLLocationCoordinate2D {
         return CLLocationCoordinate2DMake(food.donar?.latitude ?? 0.0, food.donar?.longitude ?? 0.0)
     }
     
-    func donarAddress() -> String {
+    func donorAddress() -> String {
         return food.donar?.address ?? ""
     }
     
