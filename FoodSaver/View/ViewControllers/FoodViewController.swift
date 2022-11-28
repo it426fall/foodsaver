@@ -27,8 +27,12 @@ class FoodViewController: UIViewController {
         navigationController?.navigationBar.sizeToFit()
         
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor(named: "Screen Title") as Any]
-
+        
+        if AppManager.manager.loginAccount?.account_type == Int16(AccountType.Receiver.rawValue) {
+                     self.navigationItem.rightBarButtonItems?.remove(at: 0)
+        }
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
