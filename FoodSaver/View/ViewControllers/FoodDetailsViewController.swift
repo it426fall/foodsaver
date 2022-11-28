@@ -87,14 +87,14 @@ class FoodDetailsViewController: UIViewController {
     }
     
     @IBAction func onTapCall(_ sender: Any) {
-        if let url = URL(string: "tel://\(viewModel?.donarPhoneNumber() ?? "")"), UIApplication.shared.canOpenURL(url) {
+        if let url = URL(string: "tel://\(viewModel?.donorPhoneNumber() ?? "")"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     
     @IBAction func onTapDirection(_ sender: Any) {
         let regionDistance:CLLocationDistance = 10000
-        let coordinates = viewModel?.donarLocation() ?? CLLocationCoordinate2DMake(0.0, 0.0)
+        let coordinates = viewModel?.donorLocation() ?? CLLocationCoordinate2DMake(0.0, 0.0)
         let regionSpan = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionDistance, longitudinalMeters: regionDistance)
         let options = [
             MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
@@ -102,7 +102,7 @@ class FoodDetailsViewController: UIViewController {
         ]
         let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
         let mapItem = MKMapItem(placemark: placemark)
-        mapItem.name = viewModel?.donarName() ?? ""
+        mapItem.name = viewModel?.donorName() ?? ""
         mapItem.openInMaps(launchOptions: options)
     }
     
@@ -142,10 +142,10 @@ fileprivate extension FoodDetailsViewController {
         favoriteButton.isSelected = viewModel?.isFoodFavorite() ?? false
         likesLabel.text = "\(food?.likes ?? 0)"
         unlikesLabel.text = "\(food?.dislike ?? 0)"
-        availableFoodLabel.text = "\(viewModel?.avialbleQuantity() ?? 0) / \(food?.quantity ?? 0)"
+        availableFoodLabel.text = "\(viewModel?.availableQuantity() ?? 0) / \(food?.quantity ?? 0)"
         foodTypeImageView.tintColor = (food?.isVeg ?? true) ? UIColor(named: "veg") : UIColor(named: "nonveg")
         favoriteButton.isSelected = viewModel?.isFoodFavorite() ?? false
-        donatedByLabel.text = "By \(viewModel?.donarName() ?? ""), \(viewModel?.donarAddress() ?? "")"
+        donatedByLabel.text = "By \(viewModel?.donorName() ?? ""), \(viewModel?.donorAddress() ?? "")"
         expiredLabel.isHidden = !(food?.isExpaired() ?? false)
     }
     
@@ -178,7 +178,7 @@ extension FoodDetailsViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        viewModel?.avialbleQuantity() ?? 0
+        viewModel?.availableQuantity() ?? 0
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
