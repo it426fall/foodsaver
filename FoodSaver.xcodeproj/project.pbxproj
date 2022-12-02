@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		003219F82939D35E001911CF /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 003219F72939D35E001911CF /* FavoritesViewController.swift */; };
+		007A9CA62939D59200879665 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A9CA52939D59200879665 /* ProfileViewController.swift */; };
+		007A9CA82939D5F700879665 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A9CA72939D5F700879665 /* ProfileViewModel.swift */; };
 		C73BBAC4292110EA00BC12DC /* FoodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C73BBAC3292110EA00BC12DC /* FoodTableViewCell.xib */; };
 		C73D15C028E9A73B00A986A4 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73D15BF28E9A73B00A986A4 /* SignupViewController.swift */; };
 		C73F138528E842650025D6C3 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F138428E842650025D6C3 /* DBManager.swift */; };
@@ -56,6 +59,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		003219F72939D35E001911CF /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		007A9CA52939D59200879665 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		007A9CA72939D5F700879665 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		367B13604FEA714F5867DAB3 /* Pods-FoodSaver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodSaver.debug.xcconfig"; path = "Target Support Files/Pods-FoodSaver/Pods-FoodSaver.debug.xcconfig"; sourceTree = "<group>"; };
 		66CE957F5A6DD50160435FAB /* Pods_FoodSaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodSaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B5878C93F8041D46C1D542 /* Pods-FoodSaver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodSaver.release.xcconfig"; path = "Target Support Files/Pods-FoodSaver/Pods-FoodSaver.release.xcconfig"; sourceTree = "<group>"; };
@@ -211,8 +217,10 @@
 				C73F138A28E84D530025D6C3 /* SignUpViewModel.swift */,
 				C74506E5291288960004D4DB /* AddFoodViewModel.swift */,
 				C74506EB291692160004D4DB /* FoodViewModel.swift */,
+				007A9CA52939D59200879665 /* ProfileViewController.swift */,
 				C74233FD291AC3C600E9079E /* FoodDetailsViewModel.swift */,
 				C746B81F292014B50062E0A1 /* RequestsViewModel.swift */,
+				007A9CA72939D5F700879665 /* ProfileViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -239,6 +247,7 @@
 				C74506E72913E4270004D4DB /* MoreOptionsViewController.swift */,
 				C74233F92917F74800E9079E /* FoodDetailsViewController.swift */,
 				C745C44F291D7A8D009E7072 /* ReviewViewController.swift */,
+				003219F72939D35E001911CF /* FavoritesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -414,6 +423,8 @@
 				C74233FC2917F7BC00E9079E /* ReviewTableViewCell.swift in Sources */,
 				C74506EE2916D85F0004D4DB /* FoodTableViewCell.swift in Sources */,
 				C74506EA2913E98D0004D4DB /* MoreOptionsTableViewCell.swift in Sources */,
+				003219F82939D35E001911CF /* FavoritesViewController.swift in Sources */,
+				007A9CA62939D59200879665 /* ProfileViewController.swift in Sources */,
 				C763112428D77E0A002FCA47 /* Utilities.swift in Sources */,
 				C763112228D77DB2002FCA47 /* AppManager.swift in Sources */,
 				C76310E028D76042002FCA47 /* LoginViewController.swift in Sources */,
@@ -423,6 +434,7 @@
 				C763110928D77A01002FCA47 /* Account+CoreDataClass.swift in Sources */,
 				C73F138B28E84D530025D6C3 /* SignUpViewModel.swift in Sources */,
 				C74233FE291AC3C600E9079E /* FoodDetailsViewModel.swift in Sources */,
+				007A9CA82939D5F700879665 /* ProfileViewModel.swift in Sources */,
 				C746B820292014B50062E0A1 /* RequestsViewModel.swift in Sources */,
 				C74506E82913E4270004D4DB /* MoreOptionsViewController.swift in Sources */,
 				C73F138528E842650025D6C3 /* DBManager.swift in Sources */,

@@ -1,21 +1,18 @@
 //
-//  SignupViewController.swift
+//  ProfileViewController.swift
 //  FoodSaver
 //
-//  Created on 02/10/22.
+//  Created on 12/2/22.
 //
 
+import Foundation
 import UIKit
 
-class SignupViewController: UIViewController {
+class ProfileViewController: UIViewController {
     
     @IBOutlet fileprivate weak var firstnameTextField: UITextField!
     @IBOutlet fileprivate weak var lastnameTextField: UITextField!
     @IBOutlet fileprivate weak var photoButton: UIButton!
-    @IBOutlet fileprivate weak var usernameTextField: UITextField!
-    @IBOutlet fileprivate weak var passwordTextField: UITextField!
-    @IBOutlet fileprivate weak var confirmPasswordTextFoeld: UITextField!
-    @IBOutlet fileprivate weak var accountTypeTextField: UITextField!
     @IBOutlet fileprivate weak var genderTextField: UITextField!
     @IBOutlet fileprivate weak var phoneNumberTextField: UITextField!
     @IBOutlet fileprivate weak var emailIDTextField: UITextField!
@@ -24,22 +21,22 @@ class SignupViewController: UIViewController {
     @IBOutlet fileprivate weak var aboutMeTextView: UITextView!
     
     fileprivate(set) var genderPickerView = UIPickerView()
-    fileprivate(set) var accountTypePickerView = UIPickerView()
     
-    fileprivate var viewModel = SignUpViewModel()
-    
-    
+    fileprivate var viewModel = ProfileViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
         bindViewModel()
         genderPickerView.delegate = self
         genderPickerView.dataSource = self
-        accountTypePickerView.delegate = self
-        accountTypePickerView.dataSource = self
         genderTextField.inputView = genderPickerView
-        accountTypeTextField.inputView = accountTypePickerView
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.title = AppManager.manager.loginAccount?.username ?? NSLocalizedString("Profile", comment: "Profile")
+        navigationController?.navigationBar.sizeToFit()
     }
     
     @IBAction func onTapPhoto(_ sender: UIButton) {
@@ -55,7 +52,7 @@ class SignupViewController: UIViewController {
             if status {
                 self.viewModel.save { (status) in
                     if status {
-                        self.navigationController?.popViewController(animated: true)
+                        self.showInfoAlert(title: NSLocalizedString("Success", comment: "Success"), message: NSLocalizedString("Profile data saved.", comment: "Profile data saved."), completion: nil)
                     } else {
                         self.showInfoAlert(title: NSLocalizedString("Error", comment: "Error"), message: NSLocalizedString("Something went wrong. Please try again.", comment: "Something went wrong. Please try again."), completion: nil)
                     }
@@ -72,7 +69,7 @@ class SignupViewController: UIViewController {
     }
 }
 
-extension SignupViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
+extension ProfileViewController : UIImagePickerControllerDelegate, UINavigationControllerDelegate{
     private func getImage(fromSourceType sourceType: UIImagePickerController.SourceType) {
 
         //Check is source type available
@@ -99,53 +96,37 @@ extension SignupViewController : UIImagePickerControllerDelegate, UINavigationCo
     }
 }
 
-extension SignupViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        if pickerView == genderPickerView {
-            return Gender.allCases.count
-        } else if pickerView == accountTypePickerView {
-            return AccountType.allCases.count
-        }
-        return 0
+        return Gender.allCases.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        if pickerView == genderPickerView, let gender = Gender(rawValue: row) {
-            return gender.displayString()
-        } else if pickerView == accountTypePickerView, let type = AccountType(rawValue: row) {
-            return type.displayString()
-        }
-        return ""
+        return Gender(rawValue: row)?.displayString() ?? ""
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        if pickerView == genderPickerView, let gender = Gender(rawValue: row) {
+        if let gender = Gender(rawValue: row) {
             viewModel.gender.value = gender
-        } else if pickerView == accountTypePickerView, let type = AccountType(rawValue: row) {
-            viewModel.accountType.value = type
         }
     }
 }
 
-private extension SignupViewController {
+private extension ProfileViewController {
     func bindViewModel() {
         genderTextField.text = viewModel.gender.value.displayString()
-        accountTypeTextField.text = viewModel.accountType.value.displayString()
-        viewModel.username.bind { uname in
-            self.usernameTextField.text = uname
-        }
-        
-        viewModel.password.bind { (pwd) in
-            self.passwordTextField.text = pwd
-        }
-        
-        viewModel.confirmPassword.bind { (cpwd) in
-            self.confirmPasswordTextFoeld.text = cpwd
-        }
+        firstnameTextField.text = viewModel.firstname.value
+        lastnameTextField.text = viewModel.lastname.value
+        photoButton.setBackgroundImage(viewModel.photo.value, for: .normal)
+        phoneNumberTextField.text = viewModel.phone.value
+        emailIDTextField.text = viewModel.email.value
+        addressTextField.text = viewModel.address.value
+        latLangLabel.text = String(format: "Lat: %.5f Long: %.5f", viewModel.latLong.value.latitude, viewModel.latLong.value.longitude)
+        aboutMeTextView.text = viewModel.aboutMe.value
         
         viewModel.firstname.bind { (fname) in
             self.firstnameTextField.text = fname
@@ -157,10 +138,6 @@ private extension SignupViewController {
         
         viewModel.gender.bind { (g) in
             self.genderTextField.text = g.displayString()
-        }
-        
-        viewModel.accountType.bind { (atype) in
-            self.accountTypeTextField.text = atype.displayString()
         }
         
         viewModel.phone.bind { (p) in
@@ -191,11 +168,7 @@ private extension SignupViewController {
     func updateViewModel() {
         viewModel.firstname.value = firstnameTextField.text ?? ""
         viewModel.lastname.value = lastnameTextField.text ?? ""
-        viewModel.username.value = usernameTextField.text ?? ""
-        viewModel.password.value = passwordTextField.text ?? ""
-        viewModel.confirmPassword.value = confirmPasswordTextFoeld.text ?? ""
         viewModel.gender.value = Gender.valueFrom(string: genderTextField.text ?? "")
-        viewModel.accountType.value = AccountType.valueFrom(string: accountTypeTextField.text ?? "")
         viewModel.photo.value = photoButton.backgroundImage(for: .normal)
         viewModel.address.value = addressTextField.text ?? ""
         viewModel.aboutMe.value = aboutMeTextView.text

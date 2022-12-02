@@ -47,7 +47,7 @@ class RequestsViewModel {
         }
         
         let availableFood = f.quantity - f.donatedQuantity
-        if request.quantity > availableFood || f.isExpaired() {
+        if request.quantity > availableFood || f.isExpired() {
             request.status = Int16(RequestStatus.Declined.rawValue)
             DBManager.manager.saveContext()
         }

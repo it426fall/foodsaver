@@ -8,7 +8,7 @@
 import Foundation
 
 extension Food {
-    func isExpaired() -> Bool {
+    func isExpired() -> Bool {
         if let pDate = postDate {
             return !Calendar.current.isDateInToday(pDate)
         }

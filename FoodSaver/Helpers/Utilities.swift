@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class Utilities {
     static func isValidEmail(_ email: String) -> Bool {
@@ -13,4 +14,13 @@ class Utilities {
         let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailPred.evaluate(with: email)
     }
+    
+    static func noRecordLabel() -> UILabel {
+             let label = UILabel()
+             label.text = NSLocalizedString("No records found.", comment: "No records found.")
+             label.textColor = UIColor(named: "Text")
+             label.font = UIFont.systemFont(ofSize: 11.0)
+             label.textAlignment = .center
+             return label
+         }
 }

@@ -146,7 +146,7 @@ fileprivate extension FoodDetailsViewController {
         foodTypeImageView.tintColor = (food?.isVeg ?? true) ? UIColor(named: "veg") : UIColor(named: "nonveg")
         favoriteButton.isSelected = viewModel?.isFoodFavorite() ?? false
         donatedByLabel.text = "By \(viewModel?.donorName() ?? ""), \(viewModel?.donorAddress() ?? "")"
-        expiredLabel.isHidden = !(food?.isExpaired() ?? false)
+        expiredLabel.isHidden = !(food?.isExpired() ?? false)
     }
     
     func bindViewModel() {
@@ -178,7 +178,14 @@ extension FoodDetailsViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
-        viewModel?.availableQuantity() ?? 0
+        let count = viewModel?.avialbleQuantity() ?? 0
+               if count > 0 {
+                   tableView.backgroundView = nil
+                   return count
+               } else {
+                   tableView.backgroundView = Utilities.noRecordLabel()
+                   return 0
+               }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

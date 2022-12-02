@@ -37,7 +37,7 @@ class FoodTableViewCell: UITableViewCell {
                 favoriteButton.isSelected = false
             }
             typeImageView.tintColor = (food?.isVeg ?? true) ? UIColor(named: "veg") : UIColor(named: "nonveg")
-            expiredLabel.isHidden = !(food?.isExpaired() ?? false)
+            expiredLabel.isHidden = !(food?.isExpired() ?? false)
         }
     }
     

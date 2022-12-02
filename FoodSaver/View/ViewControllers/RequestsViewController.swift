@@ -19,6 +19,7 @@ class RequestsViewController: UIViewController {
         // Do any additional setup after loading the view.
         navigationController?.navigationBar.prefersLargeTitles = true
 //        title = NSLocalizedString("Requests", comment: "Requests")
+        navigationItem.largeTitleDisplayMode = .automatic
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor(named: "Screen Title") as Any]
     }
     
@@ -32,8 +33,14 @@ class RequestsViewController: UIViewController {
 
 extension RequestsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.requests.count
-    }
+        let count = viewModel.requests.count
+                if count > 0 {
+                    tableView.backgroundView = nil
+                    return count
+                } else {
+                    tableView.backgroundView = Utilities.noRecordLabel()
+                    return 0
+                }    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RequestTableViewCell") as? RequestTableViewCell else {
