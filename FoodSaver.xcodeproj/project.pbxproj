@@ -11,6 +11,9 @@
 		007A9CA62939D59200879665 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A9CA52939D59200879665 /* ProfileViewController.swift */; };
 		007A9CA82939D5F700879665 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 007A9CA72939D5F700879665 /* ProfileViewModel.swift */; };
 		00A67A4F293F09ED001D30E8 /* FoodSaverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A67A4E293F09ED001D30E8 /* FoodSaverTests.swift */; };
+		00A67A56293F3DE3001D30E8 /* AdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A67A55293F3DE3001D30E8 /* AdminViewModel.swift */; };
+		00A67A59293F3E0C001D30E8 /* AdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A67A57293F3E0C001D30E8 /* AdminViewController.swift */; };
+		00A67A5A293F3E0C001D30E8 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00A67A58293F3E0C001D30E8 /* ForgotPasswordViewController.swift */; };
 		C73BBAC4292110EA00BC12DC /* FoodTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C73BBAC3292110EA00BC12DC /* FoodTableViewCell.xib */; };
 		C73D15C028E9A73B00A986A4 /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73D15BF28E9A73B00A986A4 /* SignupViewController.swift */; };
 		C73F138528E842650025D6C3 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C73F138428E842650025D6C3 /* DBManager.swift */; };
@@ -75,6 +78,9 @@
 		007A9CA72939D5F700879665 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		00A67A4C293F09ED001D30E8 /* FoodSaverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodSaverTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00A67A4E293F09ED001D30E8 /* FoodSaverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodSaverTests.swift; sourceTree = "<group>"; };
+		00A67A55293F3DE3001D30E8 /* AdminViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminViewModel.swift; sourceTree = "<group>"; };
+		00A67A57293F3E0C001D30E8 /* AdminViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminViewController.swift; sourceTree = "<group>"; };
+		00A67A58293F3E0C001D30E8 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		367B13604FEA714F5867DAB3 /* Pods-FoodSaver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodSaver.debug.xcconfig"; path = "Target Support Files/Pods-FoodSaver/Pods-FoodSaver.debug.xcconfig"; sourceTree = "<group>"; };
 		66CE957F5A6DD50160435FAB /* Pods_FoodSaver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FoodSaver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92B5878C93F8041D46C1D542 /* Pods-FoodSaver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FoodSaver.release.xcconfig"; path = "Target Support Files/Pods-FoodSaver/Pods-FoodSaver.release.xcconfig"; sourceTree = "<group>"; };
@@ -243,6 +249,7 @@
 		C76310DC28D76042002FCA47 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				00A67A55293F3DE3001D30E8 /* AdminViewModel.swift */,
 				C73F138628E8492E0025D6C3 /* LoginViewModel.swift */,
 				C73F138A28E84D530025D6C3 /* SignUpViewModel.swift */,
 				C74506E5291288960004D4DB /* AddFoodViewModel.swift */,
@@ -268,6 +275,8 @@
 		C76310DE28D76042002FCA47 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				00A67A57293F3E0C001D30E8 /* AdminViewController.swift */,
+				00A67A58293F3E0C001D30E8 /* ForgotPasswordViewController.swift */,
 				C76310DF28D76042002FCA47 /* LoginViewController.swift */,
 				C73D15BF28E9A73B00A986A4 /* SignupViewController.swift */,
 				C74506DD291270050004D4DB /* HomeTabTarViewController.swift */,
@@ -492,11 +501,13 @@
 				C74506EE2916D85F0004D4DB /* FoodTableViewCell.swift in Sources */,
 				C74506EA2913E98D0004D4DB /* MoreOptionsTableViewCell.swift in Sources */,
 				003219F82939D35E001911CF /* FavoritesViewController.swift in Sources */,
+				00A67A59293F3E0C001D30E8 /* AdminViewController.swift in Sources */,
 				007A9CA62939D59200879665 /* ProfileViewController.swift in Sources */,
 				C763112428D77E0A002FCA47 /* Utilities.swift in Sources */,
 				C763112228D77DB2002FCA47 /* AppManager.swift in Sources */,
 				C76310E028D76042002FCA47 /* LoginViewController.swift in Sources */,
 				C763110528D77A01002FCA47 /* Food+CoreDataProperties.swift in Sources */,
+				00A67A5A293F3E0C001D30E8 /* ForgotPasswordViewController.swift in Sources */,
 				C763110028D77A01002FCA47 /* Review+CoreDataProperties.swift in Sources */,
 				C74506E42912864A0004D4DB /* AddFoodViewController.swift in Sources */,
 				C763110928D77A01002FCA47 /* Account+CoreDataClass.swift in Sources */,
@@ -514,6 +525,7 @@
 				C746B824292031DD0062E0A1 /* Food+Extensions.swift in Sources */,
 				C73F139C28E8623F0025D6C3 /* ViewControllerExtension.swift in Sources */,
 				C74506E0291273880004D4DB /* FoodViewController.swift in Sources */,
+				00A67A56293F3DE3001D30E8 /* AdminViewModel.swift in Sources */,
 				C76310CF28D75F8B002FCA47 /* FoodSaver.xcdatamodeld in Sources */,
 				C73F138728E8492E0025D6C3 /* LoginViewModel.swift in Sources */,
 				C763110628D77A01002FCA47 /* Request+CoreDataClass.swift in Sources */,
