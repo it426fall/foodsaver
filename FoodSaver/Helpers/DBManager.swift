@@ -69,6 +69,7 @@ class DBManager {
     
     func deleteEntity(entity: NSManagedObject) {
         persistentContainer.viewContext.delete(entity)
+        saveContext()
     }
     
     func rollback()  {
@@ -86,6 +87,11 @@ class DBManager {
         let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
         fetchRequest.predicate = NSPredicate(format: "username == %@", username)
         return try? persistentContainer.viewContext.fetch(fetchRequest).first
+    }
+    
+    func getAllAccounts() -> [Account] {
+        let fetchRequest: NSFetchRequest<Account> = Account.fetchRequest()
+        return (try? persistentContainer.viewContext.fetch(fetchRequest)) ?? []
     }
     
     func getAllFoodItems(account: Account) -> [Food] {
