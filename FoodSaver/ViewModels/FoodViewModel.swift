@@ -14,7 +14,8 @@ class FoodViewModel {
     fileprivate(set) var sourceFavoriteFoods: [Food] = []
     fileprivate(set) var sourceFood: [Food] = []
     fileprivate(set) var filter: FoodFilter = .all
-    func loadAllAvailableFood() {
+    
+    func loadAllAvialabelFood() {
         guard let account = AppManager.manager.loginAccount else {
             self.food.value = []
             return
@@ -26,92 +27,71 @@ class FoodViewModel {
             }
             return false
         })
-        
         applyFilter(filter: filter)
     }
     
     func loadAllFavoriteFoodItems() {
-            guard let account = AppManager.manager.loginAccount,
-                let favorites = account.user?.myFavorites?.allObjects as? [Food] else {
-                self.favoriteFoods.value = []
-                return
-            }
-
-            sourceFavoriteFoods = favorites.sorted(by: { (f1, f2) -> Bool in
-                if let d1 = f1.postDate, let d2 = f2.postDate {
-                    return d1 > d2
-                }
-                return false
-            })
-            applyFilter(filter: filter)
+        guard let account = AppManager.manager.loginAccount,
+            let favorites = account.user?.myFavorites?.allObjects as? [Food] else {
+            self.favoriteFoods.value = []
+            return
         }
+        
+        sourceFavoriteFoods = favorites.sorted(by: { (f1, f2) -> Bool in
+            if let d1 = f1.postDate, let d2 = f2.postDate {
+                return d1 > d2
+            }
+            return false
+        })
+        applyFilter(filter: filter)
+    }
     
     func applyFilter(filter: FoodFilter) {
         if !sourceFood.isEmpty {
-                    if filter == .all {
-                        self.food.value = sourceFood
-                    } else {
-                        self.food.value = sourceFood.filter({ (f) -> Bool in
-                            return f.isVeg == (filter == .veg)
-                        })
-                    }
-                } else {
-                    food.value = []
-                }
-
-                if !sourceFavoriteFoods.isEmpty {
-                    if filter == .all {
-                        self.favoriteFoods.value = sourceFavoriteFoods
-                    } else {
-                        self.favoriteFoods.value = sourceFavoriteFoods.filter({ (f) -> Bool in
-                            return f.isVeg == (filter == .veg)
-                        })
-                    }
-        
-        else {
-            
-            })
-                    favoriteFoods.value = []
-        }
-        
-        func loadAllFavoriteFoodItems() {
-            guard let account = AppManager.manager.loginAccount,
-                  let favorites = account.user?.myFavorites?.allObjects as? [Food] else {
-                self.favoriteFoods.value = []
-                return
-            }
-            
-            sourceFavoriteFoods = favorites.sorted(by: { (f1, f2) -> Bool in
-                if let d1 = f1.postDate, let d2 = f2.postDate {
-                    return d1 > d2
-                }
-                return false
-            })
-            applyFilter(filter: filter)
-        }
-        
-        
-        func addToFavorites(add: Bool, food: Food) {
-            if add {
-                AppManager.manager.loginAccount?.user?.addToMyFavorites(food)
+            if filter == .all {
+                self.food.value = sourceFood
             } else {
-                AppManager.manager.loginAccount?.user?.removeFromMyFavorites(food)
+                self.food.value = sourceFood.filter({ (f) -> Bool in
+                    return f.isVeg == (filter == .veg)
+                })
             }
-            DBManager.manager.saveContext()
+        } else {
+            food.value = []
         }
         
-        func addLike(food: Food) {
-            food.likes += 1
-            DBManager.manager.saveContext()
+        if !sourceFavoriteFoods.isEmpty {
+            if filter == .all {
+                self.favoriteFoods.value = sourceFavoriteFoods
+            } else {
+                self.favoriteFoods.value = sourceFavoriteFoods.filter({ (f) -> Bool in
+                    return f.isVeg == (filter == .veg)
+                })
+            }
+        } else {
+            favoriteFoods.value = []
         }
-        
-        func addUnlike(food: Food) {
-            food.dislike += 1
-            DBManager.manager.saveContext()
+    }
+    
+    func addToFavorites(add: Bool, food: Food) {
+        if add {
+            AppManager.manager.loginAccount?.user?.addToMyFavorites(food)
+        } else {
+            AppManager.manager.loginAccount?.user?.removeFromMyFavorites(food)
         }
-        
-        func isFoodFavorite(food: Food) -> Bool {
-            return AppManager.manager.loginAccount?.user?.myFavorites?.contains(food) ?? false
-        }
+        DBManager.manager.saveContext()
+    }
+    
+    func addLike(food: Food) {
+        food.likes += 1
+        DBManager.manager.saveContext()
+    }
+    
+    func addUnlike(food: Food) {
+        food.dislike += 1
+        DBManager.manager.saveContext()
+    }
+    
+    func isFoodFavorite(food: Food) -> Bool {
+        return AppManager.manager.loginAccount?.user?.myFavorites?.contains(food) ?? false
     }
 }
