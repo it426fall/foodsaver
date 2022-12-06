@@ -67,6 +67,7 @@ class FoodDetailsViewModel {
     
     func requestFood() -> Bool {
         guard requestQuantity.value > 0,
+        requestQuantity.value <= avialbleQuantity(),
             let request = DBManager.manager.newEntity(entity: .Request) as? Request,
             let user = AppManager.manager.loginAccount?.user else {
             return false
