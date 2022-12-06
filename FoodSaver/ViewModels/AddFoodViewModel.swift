@@ -14,6 +14,7 @@ class AddFoodViewModel {
     var type = Observable(FoodType.veg)
     var description = Observable("")
     var photo: Observable<UIImage?> = Observable(nil)
+    fileprivate(set) var addedFood: Food? = nil
     
     var validationError = ""
     
@@ -60,6 +61,7 @@ class AddFoodViewModel {
                 DBManager.manager.saveContext()
                 validationError = ""
                 return true
+                addedFood = food
             } else {
                 DBManager.manager.rollback()
             }
