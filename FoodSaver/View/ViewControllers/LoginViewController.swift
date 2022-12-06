@@ -47,7 +47,11 @@ class LoginViewController: UIViewController {
                 return self.showInfoAlert(title: NSLocalizedString("Error", comment: "Error"), message: error?.localizedDescription, completion: nil)
             }
             
-            if let home = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabTarViewController") as? HomeTabTarViewController {
+            if self.usernameTextField.text == "admin",
+                let admin = self.storyboard?.instantiateViewController(withIdentifier: "AdminNavigationViewController") {
+                    UIApplication.shared.keyWindow?.rootViewController = admin
+                
+            } else if let home = self.storyboard?.instantiateViewController(withIdentifier: "HomeTabTarViewController") as? HomeTabTarViewController {
                 UIApplication.shared.keyWindow?.rootViewController = home
             }
         }
