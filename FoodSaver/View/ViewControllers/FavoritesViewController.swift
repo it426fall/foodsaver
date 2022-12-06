@@ -2,10 +2,9 @@
 //  FavoritesViewController.swift
 //  FoodSaver
 //
-//  Created on 12/2/22.
+//  Created on 17/11/22.
 //
 
-import Foundation
 import UIKit
 
 class FavoritesViewController: UIViewController {

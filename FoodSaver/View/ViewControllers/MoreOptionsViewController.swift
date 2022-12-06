@@ -19,6 +19,15 @@ enum MoreOptions: Int, CaseIterable{
             return NSLocalizedString("Share", comment: "Share")
         }
     }
+    
+    func icon() -> UIImage? {
+        switch self {
+        case .logout:
+            return #imageLiteral(resourceName: "logout")
+        case .share:
+            return #imageLiteral(resourceName: "share")
+        }
+    }
 }
 
 class MoreOptionsViewController: UIViewController {
@@ -40,6 +49,7 @@ extension MoreOptionsViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "MoreOptionsTableViewCell") as?  MoreOptionsTableViewCell {
             cell.title = MoreOptions(rawValue: indexPath.row)?.displayString() ?? "-"
+            cell.imageView?.image = MoreOptions(rawValue: indexPath.row)?.icon()
             return cell
         }
         return UITableViewCell()
@@ -57,7 +67,7 @@ extension MoreOptionsViewController: UITableViewDataSource, UITableViewDelegate 
                 UIApplication.shared.keyWindow?.rootViewController = login
             }
         case .share:
-            let firstActivityItem = NSLocalizedString("Hi!, I'm using Food Server app to serve the food for the need people. Recomeding you to use the app.", comment: "Hi!, I'm using Food Server app to serve the food for the need people. Recomeding you to use the app.")
+            let firstActivityItem = NSLocalizedString("Hi!, I'm using FoodSaver app to serve food for the needy. Check it out.", comment: "Hi!, I'm using FoodSaver app to serve food for the needy. Check it out.")
 
             let activityViewController : UIActivityViewController = UIActivityViewController(
                 activityItems: [firstActivityItem], applicationActivities: nil)

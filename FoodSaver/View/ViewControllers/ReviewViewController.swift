@@ -27,7 +27,7 @@ class ReviewViewController: UIViewController, FloatRatingViewDelegate {
     
     @IBAction func onTapSave(_ sender: UIBarButtonItem) {
         if commentsTextView.text.isEmpty {
-            showInfoAlert(title: NSLocalizedString("Review", comment: "Review"), message: NSLocalizedString("Please add comments.", comment: "Please add  comments."), completion: nil)
+            showInfoAlert(title: NSLocalizedString("Review", comment: "Review"), message: NSLocalizedString("Please provide the comments.", comment: "Please provide the comments."), completion: nil)
             return
         }
         

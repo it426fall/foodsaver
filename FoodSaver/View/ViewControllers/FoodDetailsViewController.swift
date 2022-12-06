@@ -1,7 +1,9 @@
+//
 //  FoodDetailsViewController.swift
 //  FoodSaver
+//
 //  Created on 06/11/22.
-
+//
 
 import UIKit
 import CoreLocation
@@ -142,11 +144,11 @@ fileprivate extension FoodDetailsViewController {
         favoriteButton.isSelected = viewModel?.isFoodFavorite() ?? false
         likesLabel.text = "\(food?.likes ?? 0)"
         unlikesLabel.text = "\(food?.dislike ?? 0)"
-        availableFoodLabel.text = "\(viewModel?.availableQuantity() ?? 0) / \(food?.quantity ?? 0)"
+        availableFoodLabel.text = "\(viewModel?.avialbleQuantity() ?? 0) / \(food?.quantity ?? 0)"
         foodTypeImageView.tintColor = (food?.isVeg ?? true) ? UIColor(named: "veg") : UIColor(named: "nonveg")
         favoriteButton.isSelected = viewModel?.isFoodFavorite() ?? false
         donatedByLabel.text = "By \(viewModel?.donorName() ?? ""), \(viewModel?.donorAddress() ?? "")"
-        expiredLabel.isHidden = !(food?.isExpired() ?? false)
+        expiredLabel.isHidden = !(food?.isExpaired() ?? false)
     }
     
     func bindViewModel() {
@@ -179,13 +181,13 @@ extension FoodDetailsViewController: UIPickerViewDelegate, UIPickerViewDataSourc
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
         let count = viewModel?.avialbleQuantity() ?? 0
-               if count > 0 {
-                   tableView.backgroundView = nil
-                   return count
-               } else {
-                   tableView.backgroundView = Utilities.noRecordLabel()
-                   return 0
-               }
+        if count > 0 {
+            tableView.backgroundView = nil
+            return count
+        } else {
+            tableView.backgroundView = Utilities.noRecordLabel()
+            return 0
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
