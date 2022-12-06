@@ -92,8 +92,7 @@ class SignUpViewModel {
                 account.username = self.username.value
                 account.password = self.password.value
                 account.account_type = Int16(self.accountType.value.rawValue)
-                account.status = Int16(AccountStatus.Active.rawValue)
-                
+                account.isActive = true
                 user.firstname = self.firstname.value
                 user.lastname = self.lastname.value
                 user.gender = Int16(self.gender.value.rawValue)

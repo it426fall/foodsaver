@@ -62,10 +62,6 @@ enum AccountType: Int, CaseIterable {
     }
 }
 
-enum AccountStatus: Int {
-    case Active = 0
-    case Inactive
-}
 
 enum RequestStatus: Int {
     case Requested = 0
