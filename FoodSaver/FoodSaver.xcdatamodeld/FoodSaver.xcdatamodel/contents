@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21512" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19H1419" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Account" representedClassName="Account" syncable="YES">
         <attribute name="account_type" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="isActive" attributeType="Boolean" defaultValueString="YES" usesScalarValueType="YES"/>
         <attribute name="password" attributeType="String"/>
-        <attribute name="status" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="username" attributeType="String"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="account" inverseEntity="User"/>
     </entity>
@@ -53,4 +53,11 @@
         <relationship name="receivedFoods" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Food" inverseName="receiver" inverseEntity="Food"/>
         <relationship name="reviews" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Review" inverseName="user" inverseEntity="Review"/>
     </entity>
+    <elements>
+        <element name="Account" positionX="-97.515625" positionY="-31.84375" width="128" height="118"/>
+        <element name="Food" positionX="501.75390625" positionY="-32.6328125" width="128" height="238"/>
+        <element name="Request" positionX="311.58984375" positionY="234.34375" width="128" height="118"/>
+        <element name="Review" positionX="-57.40234375" positionY="281.4140625" width="128" height="103"/>
+        <element name="User" positionX="103.98828125" positionY="-183.66796875" width="128" height="283"/>
+    </elements>
 </model>

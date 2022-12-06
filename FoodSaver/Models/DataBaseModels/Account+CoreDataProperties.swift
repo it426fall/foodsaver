@@ -1,8 +1,8 @@
 //
 //  Account+CoreDataProperties.swift
-//  FoodSaver
+//  
 //
-//  Created on 02/10/22.
+//  Created on 04/12/22.
 //
 //
 
@@ -18,7 +18,7 @@ extension Account {
 
     @NSManaged public var account_type: Int16
     @NSManaged public var password: String?
-    @NSManaged public var status: Int16
+    @NSManaged public var isActive: Bool
     @NSManaged public var username: String?
     @NSManaged public var user: User?
 
